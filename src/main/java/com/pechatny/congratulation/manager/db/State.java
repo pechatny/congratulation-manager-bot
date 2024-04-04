@@ -1,4 +1,4 @@
-package com.pechatny.congratulation.organazer.db;
+package com.pechatny.congratulation.manager.db;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

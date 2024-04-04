@@ -1,4 +1,4 @@
-package com.pechatny.congratulation.organazer.db;
+package com.pechatny.congratulation.manager.db;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

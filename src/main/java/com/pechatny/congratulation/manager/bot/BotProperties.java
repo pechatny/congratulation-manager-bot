@@ -1,4 +1,4 @@
-package com.pechatny.congratulation.organazer.bot;
+package com.pechatny.congratulation.manager.bot;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

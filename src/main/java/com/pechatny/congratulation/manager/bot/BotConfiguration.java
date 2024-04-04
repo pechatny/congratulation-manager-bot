@@ -1,4 +1,4 @@
-package com.pechatny.congratulation.organazer.bot;
+package com.pechatny.congratulation.manager.bot;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Configuration;

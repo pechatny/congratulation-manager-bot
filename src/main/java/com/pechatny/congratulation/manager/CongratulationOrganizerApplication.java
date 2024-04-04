@@ -1,4 +1,4 @@
-package com.pechatny.congratulation.organazer;
+package com.pechatny.congratulation.manager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
