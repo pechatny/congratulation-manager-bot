@@ -33,6 +33,7 @@ pipeline {
         stage('Docker Run') {
             steps {
                 script {
+                    sh 'docker stop congratulation-manager-bot'
                     sh 'docker run -d --rm --name congratulation-manager-bot -e ENVIRONMENT_PROFILE_NAME=\'prod\' ' + imageName
                 }
             }
