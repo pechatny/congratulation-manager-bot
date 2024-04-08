@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker stop congratulation-manager-bot || true'
-                    sh 'docker run -d --rm --name congratulation-manager-bot -e ENVIRONMENT_PROFILE_NAME=\'prod\' ' + imageName
+                    sh 'docker run -d --rm -p 8080:8080 --name congratulation-manager-bot -e ENVIRONMENT_PROFILE_NAME=\'prod\' ' + imageName
                 }
             }
         }
