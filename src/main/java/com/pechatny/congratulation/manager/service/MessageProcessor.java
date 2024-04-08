@@ -5,6 +5,7 @@ import com.pechatny.congratulation.manager.bot.StartCommand;
 import com.pechatny.congratulation.manager.db.State;
 import com.pechatny.congratulation.manager.db.StateRepository;
 import com.pechatny.congratulation.manager.db.Status;
+import io.micrometer.core.annotation.Counted;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class MessageProcessor {
         this.stateRepository = stateRepository;
     }
 
+    @Counted(value = "congratulation.manager.bot.messages.counter",description = "Count income messages from bot")
     public void processMessage(Bot bot, Update update) {
         String message = getMessage(update).trim();
         Long chatId = update.getMessage().getChatId();
