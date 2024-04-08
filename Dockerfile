@@ -12,4 +12,5 @@ ENV BOT_TOKEN=$TOKEN
 ARG JAR_FILE=/usr/app/target/*.jar
 COPY --from=build $JAR_FILE /app/runner.jar
 
+EXPOSE 8080
 ENTRYPOINT ["java", "-D$BOT_TOKEN", "-jar", "/app/runner.jar"]
