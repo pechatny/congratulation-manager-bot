@@ -15,8 +15,8 @@ pipeline {
         stage('Build image'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'CONGRATULATION_BOT_TOKEN', variable: 'TOKEN')]) {
-                        dockerImage = docker.build(imageName, "--build-arg TOKEN=${TOKEN} .")
+                    withCredentials([string(credentialsId: 'VAULT_TOKEN', variable: 'VAULT_TOKEN')]) {
+                        dockerImage = docker.build(imageName, "--build-arg VAULT_TOKEN=${VAULT_TOKEN} .")
                     }
                 }
             }

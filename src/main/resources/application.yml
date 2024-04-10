@@ -1,10 +1,14 @@
 spring:
-  application:
-    name: congratulation-manager-bot
+  application.name: congratulation-manager-bot
+  profiles.active: ${ENVIRONMENT_PROFILE_NAME:dev}
+  cloud:
+    vault:
+      host: vault
+      port: 8200
+      scheme: http
+      token: ${VAULT_TOKEN}
+  config.import: vault://
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
     hibernate.ddl-auto: update
   datasource:
     url: jdbc:h2:mem:testdb
@@ -24,9 +28,6 @@ management:
     metrics:
       export:
         enabled: true
-    distribution:
-      percentiles-histogram:
-        "[http.server.requests]": true
 bot:
   name: CongratulationOrganizerBot
-  token: ${secret.bot.token}
+  token: ${bot.token}
