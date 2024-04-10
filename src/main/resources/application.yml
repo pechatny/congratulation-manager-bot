@@ -3,7 +3,7 @@ spring:
   profiles.active: ${ENVIRONMENT_PROFILE_NAME:dev}
   cloud:
     vault:
-      host: vault
+      host: pechatny.synology.me
       port: 8200
       scheme: http
       token: ${VAULT_TOKEN}
