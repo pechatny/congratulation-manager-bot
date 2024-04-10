@@ -16,7 +16,7 @@ pipeline {
             steps{
                 script{
                     withCredentials([string(credentialsId: 'VAULT_TOKEN', variable: 'VAULT_TOKEN')]) {
-                        dockerImage = docker.build(imageName, "--build-arg VAULT_TOKEN=${VAULT_TOKEN} .")
+                        dockerImage = docker.build(imageName, "--network=jenkins-network --build-arg VAULT_TOKEN=${VAULT_TOKEN} .")
                     }
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker stop congratulation-manager-bot || true'
-                    sh 'docker run -d --rm -p 8080:8080 --name congratulation-manager-bot -e ENVIRONMENT_PROFILE_NAME=\'prod\' ' + imageName
+                    sh 'docker run -d --rm --network=jenkins-network -p 8080:8080 --name congratulation-manager-bot -e ENVIRONMENT_PROFILE_NAME=\'prod\' ' + imageName
                 }
             }
         }
