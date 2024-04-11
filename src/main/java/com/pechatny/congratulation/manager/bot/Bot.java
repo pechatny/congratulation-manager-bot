@@ -1,6 +1,7 @@
 package com.pechatny.congratulation.manager.bot;
 
-import com.pechatny.congratulation.manager.service.MessageProcessor;
+import com.pechatny.congratulation.manager.service.message.MsgBase;
+import com.pechatny.congratulation.manager.service.processor.MessageProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,7 +26,12 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         logger.info("Message received!");
         if (update.hasMessage()) {
-            processor.processMessage(this, update);
+            var message = new MsgBase(
+                update.getMessage().getChatId(),
+                update.getMessage().getText()
+            );
+
+            message.process(this, processor);
         }
     }
 

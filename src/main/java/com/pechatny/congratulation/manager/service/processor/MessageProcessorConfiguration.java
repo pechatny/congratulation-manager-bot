@@ -1,4 +1,4 @@
-package com.pechatny.congratulation.manager.service;
+package com.pechatny.congratulation.manager.service.processor;
 
 import com.pechatny.congratulation.manager.db.StateRepository;
 import io.micrometer.core.instrument.MeterRegistry;

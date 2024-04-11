@@ -1,19 +1,18 @@
-package com.pechatny.congratulation.manager.service;
+package com.pechatny.congratulation.manager.service.processor;
 
 import com.pechatny.congratulation.manager.bot.Bot;
-import com.pechatny.congratulation.manager.bot.StartCommand;
+import com.pechatny.congratulation.manager.command.ParticipantsCommand;
+import com.pechatny.congratulation.manager.command.PoetryCommand;
+import com.pechatny.congratulation.manager.command.StartCommand;
 import com.pechatny.congratulation.manager.db.State;
 import com.pechatny.congratulation.manager.db.StateRepository;
 import com.pechatny.congratulation.manager.db.Status;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.List;
 
 public class MessageProcessorLogic implements MessageProcessor {
-    private final Logger logger = LoggerFactory.getLogger(MessageProcessorLogic.class);
     private final StateRepository stateRepository;
     public static final String START_COMMAND = "/START";
 
@@ -21,9 +20,8 @@ public class MessageProcessorLogic implements MessageProcessor {
         this.stateRepository = stateRepository;
     }
 
-    public void processMessage(Bot bot, Update update) {
-        String message = getMessage(update).trim();
-        Long chatId = update.getMessage().getChatId();
+    public void processMessage(Bot bot, Long chatId, String message) {
+        message = message.trim();
         List<State> states = stateRepository.findStateByChatId(chatId);
 
         State state;
@@ -60,12 +58,7 @@ public class MessageProcessorLogic implements MessageProcessor {
                 }
             }
         } catch (TelegramApiException e) {
-            logger.error("Convert operation error! Message: {}", message);
+            LoggerFactory.getLogger(MessageProcessorLogic.class).error("Convert operation error! Message: {}", message);
         }
-    }
-
-    private String getMessage(Update update) {
-
-        return update.getMessage().getText();
     }
 }

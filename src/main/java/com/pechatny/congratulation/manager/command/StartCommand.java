@@ -1,5 +1,6 @@
-package com.pechatny.congratulation.manager.bot;
+package com.pechatny.congratulation.manager.command;
 
+import com.pechatny.congratulation.manager.bot.Bot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 

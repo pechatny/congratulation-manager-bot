@@ -1,4 +1,4 @@
-package com.pechatny.congratulation.manager.bot;
+package com.pechatny.congratulation.manager.command;
 
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
