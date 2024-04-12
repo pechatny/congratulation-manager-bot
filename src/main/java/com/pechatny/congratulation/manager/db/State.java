@@ -45,11 +45,11 @@ public class State {
         return chatId;
     }
 
-    public State updateStatus(Status status) {
+    public State withUpdatedStatus(Status status) {
         return new State(this.id, this.chatId, status, this.message);
     }
 
-    public State updateMessage(String message) {
+    public State withUpdatedMessage(String message) {
         return new State(this.id, this.chatId, this.status, message);
     }
 }

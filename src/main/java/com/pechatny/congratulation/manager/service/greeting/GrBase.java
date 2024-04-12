@@ -1,11 +1,11 @@
 package com.pechatny.congratulation.manager.service.greeting;
 
-public class GrString implements Greeting<String> {
+public class GrBase implements Greeting<String> {
 
     private final String participants;
     private final String text;
 
-    public GrString(String participants, String text) {
+    public GrBase(String participants, String text) {
         this.participants = participants;
         this.text = text;
     }
