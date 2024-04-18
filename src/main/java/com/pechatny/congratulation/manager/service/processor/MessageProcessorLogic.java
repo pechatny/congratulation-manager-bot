@@ -33,9 +33,9 @@ public class MessageProcessorLogic implements MessageProcessor {
         }
         try {
             if (message.equalsIgnoreCase(START_COMMAND)) {
-                state = state.updateStatus(Status.START);
+                state = state.withUpdatedStatus(Status.START);
                 var command = new StartCommand(bot, chatId);
-                var updatedState = state.updateStatus(Status.WAIT_FOR_PARTICIPANTS);
+                var updatedState = state.withUpdatedStatus(Status.WAIT_FOR_PARTICIPANTS);
                 stateRepository.save(updatedState);
                 command.execute();
 
@@ -43,7 +43,7 @@ public class MessageProcessorLogic implements MessageProcessor {
                 switch (state.getStatus()) {
                     case START -> {
                         var command = new StartCommand(bot, chatId);
-                        var updatedState = state.updateStatus(Status.WAIT_FOR_PARTICIPANTS);
+                        var updatedState = state.withUpdatedStatus(Status.WAIT_FOR_PARTICIPANTS);
                         stateRepository.save(updatedState);
                         command.execute();
                     }

@@ -30,7 +30,7 @@ public class ParticipantsCommand implements Command {
 
     @Override
     public void execute() throws TelegramApiException {
-        var updatedStated = state.updateMessage(message).updateStatus(Status.WAIT_FOR_POETRY);
+        var updatedStated = state.withUpdatedMessage(message).withUpdatedStatus(Status.WAIT_FOR_POETRY);
         stateRepository.save(updatedStated);
 
         SendMessage sendMessage = new SendMessage();

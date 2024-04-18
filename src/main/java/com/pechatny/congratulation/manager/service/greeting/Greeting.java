@@ -4,4 +4,5 @@ public interface Greeting<T> {
     T assignedGreeting();
 
     T participants();
+
 }

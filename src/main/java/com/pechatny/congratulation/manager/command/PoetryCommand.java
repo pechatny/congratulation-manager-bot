@@ -40,7 +40,7 @@ public class PoetryCommand implements Command {
         sendMessage.setText(greeting.assignedGreeting());
         sendMessage.setChatId(state.getChatId());
         bot.execute(sendMessage);
-        state.updateStatus(Status.START);
+        state.withUpdatedStatus(Status.START);
         stateRepository.save(state);
     }
 }
