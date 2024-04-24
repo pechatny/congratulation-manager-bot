@@ -1,6 +1,7 @@
 pipeline {
     environment {
-        imageName = "nexus:8082/repository/my-local-docker-repo/congratulation-manager-bot:$BUILD_NUMBER"
+        PROJECT_NAME = congratulation-manager-bot
+        imageName = "nexus:8082/repository/my-local-docker-repo/$PROJECT_NAME:$BUILD_NUMBER"
         registryCredentials = "nexus-jenkins-docker"
         registry = "https://nexus:8082"
         dockerImage = ''
@@ -9,7 +10,7 @@ pipeline {
     stages {
         stage('Git checkout'){
             steps{
-                git credentialsId: '4851be6a-eea6-40b6-9004-53706128ca31', url: 'http://pechatny.synology.me:10080/d.pechatnikov/congratulation-manager-bot.git'
+                git credentialsId: '4851be6a-eea6-40b6-9004-53706128ca31', url: "http://pechatny.synology.me:10080/d.pechatnikov/$PROJECT_NAME.git"
             }
         }
         stage('Build image'){
@@ -34,10 +35,10 @@ pipeline {
             steps {
                 withDockerRegistry(credentialsId: registryCredentials, url: registry) {
                     script {
-                        sh 'docker stop congratulation-manager-bot || true'
+                        sh "docker stop $PROJECT_NAME || true"
                     }
                     script {
-                        sh 'docker run -d --rm -p 8080:8080 --name congratulation-manager-bot -e ENVIRONMENT_PROFILE_NAME=\'prod\' ' + imageName
+                        sh "docker run -d --rm -p 8080:8080 --name $PROJECT_NAME -e ENVIRONMENT_PROFILE_NAME=\'prod\' " + imageName
                     }
                 }
             }
