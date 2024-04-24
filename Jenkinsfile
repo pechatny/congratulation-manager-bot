@@ -32,11 +32,13 @@ pipeline {
         }
         stage('Application Start') {
             steps {
-                script {
-                    sh 'docker stop congratulation-manager-bot || true'
-                }
-                script {
-                    sh 'docker run -d --rm -p 8080:8080 --name congratulation-manager-bot -e ENVIRONMENT_PROFILE_NAME=\'prod\' ' + imageName
+                withDockerRegistry(credentialsId: registryCredentials, url: registry) {
+                    script {
+                        sh 'docker stop congratulation-manager-bot || true'
+                    }
+                    script {
+                        sh 'docker run -d --rm -p 8080:8080 --name congratulation-manager-bot -e ENVIRONMENT_PROFILE_NAME=\'prod\' ' + imageName
+                    }
                 }
             }
         }
